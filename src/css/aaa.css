@@ -1,0 +1,82 @@
+/* AAA layer: let the 3D canvas show through the original screens */
+body.aaa-on{background:#000}
+body.aaa-on #menu-screen{background:transparent!important;background-image:none!important}
+body.aaa-on #mission-select-screen,body.aaa-on #team-screen,body.aaa-on #tutorial-screen,
+body.aaa-on #leaderboard-screen,body.aaa-on #nasa-screen,body.aaa-on #settings-screen,body.aaa-on #report-screen{background:rgba(4,8,16,.72)!important;background-image:none!important;backdrop-filter:blur(5px)}
+body.aaa-on #menu-bg-canvas{display:none!important}
+body.aaa-on .screen{position:relative;z-index:2}
+body.aaa-on #menu-screen{justify-content:flex-start!important;padding-left:7vw}
+body.aaa-on #menu-container{margin:0!important;text-align:left;align-items:flex-start}
+body.aaa-on .menu-header,body.aaa-on .logo-container{justify-content:flex-start;text-align:left}
+body.aaa-on .menu-btn{backdrop-filter:blur(6px);background:rgba(18,24,34,.72)!important}
+body.aaa-on .menu-btn.primary{background:var(--accent)!important}
+body.aaa-on #builder-screen,body.aaa-on .builder-layout,body.aaa-on .builder-center{background:transparent!important;background-image:none!important}
+body.aaa-on #builder-canvas{background:transparent!important}
+body.aaa-on #simulation-screen{background:transparent!important}
+body.aaa-on #sim-canvas{background:transparent!important}
+#aaa-cd{position:fixed;left:50%;top:11%;transform:translateX(-50%);z-index:60;font:700 64px/1 "Segoe UI",system-ui,sans-serif;color:#fff;letter-spacing:.06em;display:none;pointer-events:none;text-shadow:0 0 30px rgba(80,180,255,.7)!important}
+#aaa-cd.pulse{animation:aaaPulse .9s ease-out}
+@keyframes aaaPulse{0%{transform:translateX(-50%) scale(1.5);opacity:0}25%{opacity:1}100%{transform:translateX(-50%) scale(1);opacity:1}}
+#aaa-pre{position:fixed;left:50%;top:120px;transform:translateX(-50%);z-index:55;background:rgba(10,15,24,.82);border:1px solid #34404e;border-radius:6px;padding:14px 22px;color:#e9eef3;font:14px "Segoe UI",system-ui,sans-serif;display:none;min-width:320px;backdrop-filter:blur(6px)}
+#aaa-pre h3{margin:0 0 8px;font-size:13px;letter-spacing:.14em;color:#8fb7e8}
+#aaa-pre .ok{color:#7be28f;padding:2px 0}#aaa-pre .bad{color:#ff7a6b;padding:2px 0}#aaa-pre .hint{margin-top:10px;color:#9fb0c3;font-size:12px}
+#aaa-mc{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:55;display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none}
+.aaa-mc-row{background:rgba(10,15,24,.78);border:1px solid #2f3b4a;border-left:3px solid #4aa3ff;border-radius:4px;padding:6px 14px;color:#e9eef3;font:13px "Segoe UI",system-ui,sans-serif;transition:opacity .6s;backdrop-filter:blur(4px)}
+.aaa-mc-row b{color:#4aa3ff;letter-spacing:.1em;font-size:11px;margin-right:8px}.aaa-mc-row.warn{border-left-color:#ffb347}.aaa-mc-row.warn b{color:#ffb347}.aaa-mc-row.out{opacity:0}
+
+.aaa-info{margin-top:12px;border-top:1px solid #34404e;padding-top:8px;font-size:12px;color:#c3cfdd}.aaa-info-t{font-size:11px;letter-spacing:.12em;color:#8fb7e8;margin-bottom:6px}.aaa-row{display:flex;flex-direction:column;margin-bottom:6px}.aaa-row b{color:#e8832a;font-size:11px}.aaa-row span{line-height:1.4}
+
+body.aaa-on #intro-screen{background:transparent!important}
+
+body.aaa-on #builder-screen .info-panel{overflow:hidden}
+.aaa-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin}
+body.aaa-on .builder-actions{flex:0 0 auto;margin-top:0!important;background:rgba(10,16,26,.96);position:relative;z-index:3}
+body.aaa-on .btn-launch{font-size:1rem!important;padding:14px 10px!important;min-width:120px}
+#aaa-home{position:fixed;z-index:50;display:none;background:rgba(14,22,34,.85);color:#dbe6f3;border:1px solid #3b4a5e;border-radius:6px;padding:7px 12px;font:600 12px/1 inherit;letter-spacing:.08em;cursor:pointer}
+#aaa-home:hover{border-color:#e8832a;color:#fff}
+body[data-screen=builder-screen] #aaa-home{display:block;top:12px;right:316px}
+body[data-screen=simulation-screen] #aaa-home{display:block;top:332px;left:16px}
+body.aaa-on #builder-screen .builder-layout{height:100vh;grid-template-rows:minmax(0,1fr)}
+body.aaa-on #builder-screen .builder-panel{min-height:0;height:100%}
+body.aaa-on #builder-screen .parts-list{min-height:0;overflow-y:auto}
+
+#intro-screen #intro-caption{font-size:clamp(1.6rem,4.6vw,4rem)!important;font-weight:700!important;letter-spacing:.38em!important;text-indent:.38em;bottom:16%!important;color:#fff;text-shadow:0 0 40px rgba(130,180,255,.7),0 2px 0 rgba(0,0,0,.6)!important}
+#intro-screen #intro-caption.show{letter-spacing:.3em!important;text-indent:.3em}
+#aaa-pre{pointer-events:auto}
+#aaa-pre .aaa-x{position:absolute;top:6px;right:8px;width:26px;height:26px;border-radius:50%;border:1px solid #4a5a70;background:#162030;color:#dbe6f3;cursor:pointer;font-size:14px;line-height:1}
+#aaa-pre .aaa-x:hover{background:#e8832a;color:#000}
+#aaa-pollbtn{position:fixed;z-index:55;top:120px;left:50%;transform:translateX(-50%);display:none!important;background:rgba(14,22,34,.9);color:#dbe6f3;border:1px solid #3b4a5e;border-radius:6px;padding:6px 12px;font:600 12px/1 inherit;letter-spacing:.08em;cursor:pointer}
+.aaa-warp{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.aaa-warp button{background:#101a28;color:#cfe0f3;border:1px solid #33465c;border-radius:4px;padding:4px 7px;font:700 11px/1 inherit;cursor:pointer}
+.aaa-warp button.on{background:#e8832a;color:#10131a;border-color:#e8832a}
+.aaa-warp .lab{font:700 11px/1 inherit;color:#8fb7e8;margin-right:4px;letter-spacing:.08em}
+.aaa-warp select{background:#101a28;color:#cfe0f3;border:1px solid #33465c;border-radius:4px;padding:3px;font-size:11px;margin-left:6px}
+.time-controls .time-btn{display:none!important}
+body[data-screen=simulation-screen] #aaa-pollbtn.show{display:block!important}
+
+/* v1.3 templates */
+#aaa-tpl{position:fixed;inset:0;z-index:99990;background:rgba(2,6,14,.78);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center}
+#aaa-tpl .box{width:min(1100px,94vw);max-height:90vh;overflow:auto;background:rgba(10,16,30,.96);border:1px solid #334155;border-radius:12px;padding:14px;color:#e2e8f0;font-family:inherit}
+#aaa-tpl .hd{display:flex;align-items:center;gap:14px;margin-bottom:10px;letter-spacing:.12em}
+#aaa-tpl .hd .md{margin-left:auto}.hd .md button,#aaa-tpl .x{background:#0f172a;color:#cbd5e1;border:1px solid #334155;padding:5px 10px;cursor:pointer;border-radius:6px}
+#aaa-tpl .md button.on{background:#38bdf8;color:#04121c}
+#aaa-tpl .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:10px}
+#aaa-tpl .card{display:flex;gap:10px;background:#0b1220;border:1px solid #1e293b;border-radius:10px;padding:10px}
+#aaa-tpl canvas{background:#050912;border-radius:8px;flex:none}
+#aaa-tpl .tx{font-size:12px;line-height:1.4}#aaa-tpl h4{margin:4px 0;font-size:14px}#aaa-tpl p{margin:3px 0}
+#aaa-tpl .tag{color:#04121c;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:700}
+#aaa-tpl .sm{color:#94a3b8}#aaa-tpl .st{color:#cbd5e1}#aaa-tpl ol{margin:4px 0 6px 16px;padding:0;color:#94a3b8}
+#aaa-tpl .load{background:#22c55e;color:#04121c;border:0;padding:6px 16px;border-radius:6px;font-weight:700;cursor:pointer}
+#aaa-tpl .card{align-items:flex-start}#aaa-tpl .tx{flex:1;min-width:0}#aaa-tpl .load{display:block;margin:8px 0 2px}
+
+#aaa-tplbtn{position:fixed;top:12px;left:min(640px,calc(100vw - 560px));z-index:50;display:none;height:32px;padding:0 14px;white-space:nowrap;background:#0f3a52;color:#e6f6ff;border:1px solid #38bdf8;border-radius:8px;font-weight:700;letter-spacing:.08em;cursor:pointer}
+body[data-screen=builder-screen] #aaa-tplbtn{display:block}
+
+/* v1.4 moon walk */
+#aaa-walk{position:fixed;left:50%;bottom:150px;transform:translateX(-50%);z-index:60;display:none;padding:14px 26px;background:linear-gradient(180deg,#134e6e,#0b3550);color:#e9f8ff;border:1px solid #5fc8f2;border-radius:10px;font-weight:700;letter-spacing:.1em;cursor:pointer;box-shadow:0 0 28px rgba(95,200,242,.45);animation:aaaPulse 2s infinite}
+#aaa-walk.show{display:block}#aaa-walk small{opacity:.7;font-weight:400}
+@keyframes aaaPulse{50%{box-shadow:0 0 44px rgba(95,200,242,.8)}}
+#aaa-fade{position:fixed;inset:0;z-index:100001;background:#000;opacity:0;pointer-events:none;transition:opacity 1.2s ease;display:flex;align-items:center;justify-content:center;text-align:center;color:#cfe8f5;letter-spacing:.12em;font-size:18px}
+#aaa-fade.on{opacity:1;pointer-events:auto}#aaa-fade small{opacity:.6;font-size:13px}
+#aaa-astra{position:fixed;inset:0;z-index:100000;background:#000}#aaa-astra iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+#aaa-astra .back{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:2;padding:8px 18px;background:rgba(10,17,27,.82);color:#e4edf5;border:1px solid #5fc8f2;border-radius:6px;letter-spacing:.12em;cursor:pointer}

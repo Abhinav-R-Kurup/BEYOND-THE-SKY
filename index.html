@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLY BEYOND SKY | An INCREDIBLES Production</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'></text></svg>">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/menu.css">
+    <link rel="stylesheet" href="src/css/builder.css">
+    <link rel="stylesheet" href="src/css/simulation.css">
+    <link rel="stylesheet" href="src/css/hud.css">
+    <link rel="stylesheet" href="src/css/mission-report.css">
+    <link rel="stylesheet" href="src/css/override.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap">
+    <link rel="stylesheet" href="src/css/intro.css">
+</head>
+<body>
+    <!-- CINEMATIC INTRO -->
+    <div id="intro-screen" class="screen active">
+        <canvas id="intro-canvas"></canvas>
+        <div id="intro-overlay">
+            <div id="intro-caption">An INCREDIBLES Production</div>
+            <div id="intro-wordmark">INCREDIBLES</div>
+            <div id="game-title-container" class="hidden">
+                <div id="game-title" role="heading" aria-level="1">FLY BEYOND SKY</div>
+                <div id="title-rule"></div>
+                <p id="game-subtitle">NASA Space Apps Challenge 2026</p>
+            </div>
+        </div>
+        <div id="intro-gate">
+            <svg viewBox="437 177 381 912" aria-hidden="true"><circle cx="662.3" cy="276.8" r="99.6"/><polygon points="602,420 767,419 817,767 652,724 754,1087 439,564 650,612"/></svg>
+            <div class="gate-text">Click to begin</div>
+            <div class="gate-sub">Best experienced with sound</div>
+        </div>
+        <button id="skip-intro" class="btn-skip">SKIP ▶</button>
+    </div>
+
+    <!-- MAIN MENU -->
+    <div id="menu-screen" class="screen">
+        <canvas id="menu-bg-canvas"></canvas>
+        <div id="menu-container">
+            <div class="menu-header">
+                <div class="logo-container">
+                    <div class="logo-icon"></div>
+                    <h1 class="menu-title">FLY BEYOND<br>SKY</h1>
+                </div>
+                
+            </div>
+            <div class="menu-buttons">
+                <button class="menu-btn primary" id="btn-new-mission">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">New Mission</span>
+                </button>
+                <button class="menu-btn" id="btn-sandbox">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">Sandbox Mode</span>
+                </button>
+                <button class="menu-btn" id="btn-tutorials">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">Tutorials</span>
+                </button>
+                <button class="menu-btn" id="btn-team-mode">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">Team Planning</span>
+                </button>
+                <button class="menu-btn" id="btn-leaderboard">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">Leaderboards</span>
+                </button>
+                <button class="menu-btn" id="btn-nasa-data">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">NASA Data Center</span>
+                </button>
+                <button class="menu-btn" id="btn-settings">
+                    <span class="btn-icon"></span>
+                    <span class="btn-label">Settings</span>
+                </button>
+            </div>
+            <div class="menu-footer">
+                <p>Team INCREDIBLES &copy; 2026</p>
+                <p class="team-names">Abhinav R Kurup | Sooraj DS | Gopika | Krishnaveni | Athira Raj</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISSION SELECT -->
+    <div id="mission-select-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" id="btn-back-menu">◀ BACK</button>
+            <h2>SELECT MISSION</h2>
+            <div class="difficulty-selector">
+                <button class="diff-btn active" data-diff="beginner">BEGINNER</button>
+                <button class="diff-btn" data-diff="intermediate">INTERMEDIATE</button>
+                <button class="diff-btn" data-diff="advanced">ADVANCED</button>
+            </div>
+        </div>
+        <div id="mission-cards-container" class="mission-cards"></div>
+    </div>
+
+    <!-- TEAM PLANNING MODE -->
+    <div id="team-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" id="btn-back-team">◀ BACK</button>
+            <h2>TEAM PLANNING MODE</h2>
+        </div>
+        <div id="team-setup-container"></div>
+    </div>
+
+    <!-- ROCKET BUILDER -->
+    <div id="builder-screen" class="screen">
+        <div class="builder-layout">
+            <!-- Left Panel: Parts Catalog -->
+            <div class="builder-panel parts-panel">
+                <div class="panel-header">
+                    <h3>COMPONENTS</h3>
+                    <div class="part-categories">
+                        <button class="cat-btn active" data-cat="all">All</button>
+                        <button class="cat-btn" data-cat="command">Command</button>
+                        <button class="cat-btn" data-cat="structural">Structure</button>
+                        <button class="cat-btn" data-cat="fuel">Fuel</button>
+                        <button class="cat-btn" data-cat="engine">Engines</button>
+                        <button class="cat-btn" data-cat="booster">Boosters</button>
+                        <button class="cat-btn" data-cat="utility">Utility</button>
+                        <button class="cat-btn" data-cat="science">Science</button>
+                        <button class="cat-btn" data-cat="payload">Payload</button>
+                    </div>
+                </div>
+                <div id="parts-list" class="parts-list"></div>
+            </div>
+
+            <!-- Center: Build Area -->
+            <div class="builder-center">
+                <div class="builder-toolbar">
+                    <button class="tool-btn" id="btn-undo" title="Undo">↩</button>
+                    <button class="tool-btn" id="btn-redo" title="Redo">↪</button>
+                    <button class="tool-btn" id="btn-clear-build" title="Clear">Clear</button>
+                    <button class="tool-btn" id="btn-save-design" title="Save Design">Save</button>
+                    <button class="tool-btn" id="btn-load-design" title="Load Design">Load</button>
+                    <button class="tool-btn" id="btn-validate" title="Validate">✓</button>
+                </div>
+                <canvas id="builder-canvas"></canvas>
+                <div class="builder-controls">
+                    <div class="stage-manager">
+                        <h4>STAGING</h4>
+                        <div id="stage-list" class="stage-list"></div>
+                        <button class="btn-sm" id="btn-add-stage">+ Add Stage</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Stats & Info -->
+            <div class="builder-panel info-panel">
+                <div class="panel-header">
+                    <h3>SPACECRAFT STATS</h3>
+                </div>
+                <div id="spacecraft-stats" class="stats-container">
+                    <div class="stat-row"><span>Total Mass</span><span id="stat-mass">0 kg</span></div>
+                    <div class="stat-row"><span>Fuel Capacity</span><span id="stat-fuel">0 L</span></div>
+                    <div class="stat-row"><span>Max Thrust</span><span id="stat-thrust">0 kN</span></div>
+                    <div class="stat-row"><span>TWR</span><span id="stat-twr">0.00</span></div>
+                    <div class="stat-row"><span>Delta-V</span><span id="stat-deltav">0 m/s</span></div>
+                    <div class="stat-row"><span>Cost</span><span id="stat-cost">$0</span></div>
+                    <div class="stat-row"><span>Power Gen</span><span id="stat-power">0 W</span></div>
+                    <div class="stat-row"><span>Power Use</span><span id="stat-power-use">0 W</span></div>
+                    <div class="stat-row"><span>Comm Range</span><span id="stat-comm">0 km</span></div>
+                    <div class="stat-row"><span>Science Value</span><span id="stat-science">0</span></div>
+                </div>
+
+                <div class="panel-section">
+                    <h4>SELECTED PART</h4>
+                    <div id="part-details" class="part-details">
+                        <p class="placeholder-text">Click a part to view details</p>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h4>VALIDATION</h4>
+                    <div id="validation-results" class="validation-list">
+                        <p class="placeholder-text">Click ✓ to validate design</p>
+                    </div>
+                </div>
+
+                <div class="builder-actions">
+                    <button class="btn-back" id="btn-back-missions">◀ MISSIONS</button>
+                    <button class="btn-launch" id="btn-launch"> LAUNCH</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIMULATION -->
+    <div id="simulation-screen" class="screen">
+        <canvas id="sim-canvas"></canvas>
+
+        <!-- HUD Overlay -->
+        <div id="sim-hud">
+            <div class="hud-top">
+                <div class="hud-panel mission-info-hud">
+                    <span id="hud-mission-name">Mission Name</span>
+                    <span id="hud-mission-phase" class="phase-badge">PRE-LAUNCH</span>
+                </div>
+                <div class="hud-panel time-panel">
+                    <span>T+ <span id="hud-timer">00:00:00</span></span>
+                    <div class="time-controls">
+                        <button class="time-btn" id="btn-time-slow" title="Slow">◀◀</button>
+                        <button class="time-btn active" id="btn-time-normal" title="Normal">▶</button>
+                        <button class="time-btn" id="btn-time-fast" title="Fast">▶▶</button>
+                        <button class="time-btn" id="btn-time-vfast" title="Very Fast">▶▶▶</button>
+                    </div>
+                </div>
+                <div class="hud-panel controls-panel">
+                    <button class="hud-btn" id="btn-pause"> PAUSE</button>
+                    <button class="hud-btn" id="btn-abort"> ABORT</button>
+                    <button class="hud-btn" id="btn-map-view">MAP (M)</button>
+                </div>
+            </div>
+
+            <div class="hud-left">
+                <div class="hud-panel telemetry-panel">
+                    <h4>TELEMETRY</h4>
+                    <div class="telemetry-row"><span>Altitude</span><span id="hud-altitude">0 m</span></div>
+                    <div class="telemetry-row"><span>Velocity</span><span id="hud-velocity">0 m/s</span></div>
+                    <div class="telemetry-row"><span>Acceleration</span><span id="hud-accel">0 m/s²</span></div>
+                    <div class="telemetry-row"><span>Heading</span><span id="hud-heading">90°</span></div>
+                    <div class="telemetry-row"><span>Throttle</span><span id="hud-throttle">100%</span></div>
+                    <div class="telemetry-row"><span>Fuel</span><span id="hud-fuel">100%</span></div>
+                    <div class="telemetry-row"><span>Mass</span><span id="hud-mass">0 kg</span></div>
+                    <div class="telemetry-row"><span>Ap/Pe</span><span id="hud-orbit">N/A</span></div>
+                </div>
+            </div>
+
+            <div class="hud-right">
+                <div class="hud-panel staging-panel">
+                    <h4>STAGING</h4>
+                    <div id="hud-staging-list" class="hud-staging"></div>
+                    <button class="stage-btn" id="btn-stage-next">STAGE ▶</button>
+                </div>
+                <div class="hud-panel nav-panel">
+                    <h4>NAVIGATION</h4>
+                    <div class="nav-ball" id="nav-ball">
+                        <div class="nav-indicator" id="nav-indicator"></div>
+                    </div>
+                    <div class="throttle-slider-container">
+                        <label>Throttle</label>
+                        <input type="range" id="throttle-slider" min="0" max="100" value="100">
+                    </div>
+                </div>
+            </div>
+
+            <div class="hud-bottom">
+                <div class="hud-panel objectives-panel">
+                    <h4>OBJECTIVES</h4>
+                    <div id="hud-objectives"></div>
+                </div>
+                <div class="hud-panel alerts-panel">
+                    <div id="hud-alerts"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map View Overlay -->
+        <div id="map-overlay" class="overlay hidden">
+            <div class="overlay-header">
+                <h3>Map</h3>
+                <button class="btn-close" id="btn-close-map">✕</button>
+            </div>
+            <canvas id="map-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- MISSION REPORT -->
+    <div id="report-screen" class="screen">
+        <div class="report-container">
+            <div class="report-header">
+                <h2>MISSION REPORT</h2>
+                <span id="report-status" class="report-badge">SUCCESS</span>
+            </div>
+            <div id="report-content" class="report-content"></div>
+            <div class="report-actions">
+                <button class="menu-btn" id="btn-retry-mission"> Retry Mission</button>
+                <button class="menu-btn" id="btn-new-mission-report"> New Mission</button>
+                <button class="menu-btn" id="btn-main-menu"> Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TUTORIALS -->
+    <div id="tutorial-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" id="btn-back-tutorial">◀ BACK</button>
+            <h2>TUTORIALS & GUIDES</h2>
+        </div>
+        <div id="tutorial-content"></div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div id="leaderboard-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" id="btn-back-leaderboard">◀ BACK</button>
+            <h2>LEADERBOARDS</h2>
+        </div>
+        <div id="leaderboard-content"></div>
+    </div>
+
+    <!-- NASA DATA CENTER -->
+    <div id="nasa-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" id="btn-back-nasa">◀ BACK</button>
+            <h2>NASA DATA CENTER</h2>
+        </div>
+        <div id="nasa-content"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settings-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" id="btn-back-settings">◀ BACK</button>
+            <h2>SETTINGS</h2>
+        </div>
+        <div id="settings-content"></div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast-container"></div>
+
+    <!-- MODAL -->
+    <div id="modal-overlay" class="overlay hidden">
+        <div id="modal-content" class="modal-box"></div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="src/js/engine/constants.js"></script>
+    <script src="src/js/engine/utils.js"></script>
+    <script src="src/js/engine/physics.js"></script>
+    <script src="src/js/engine/celestialBodies.js"></script>
+    <script src="src/js/engine/renderer.js"></script>
+    <script src="src/js/engine/particles.js"></script>
+    <script src="src/js/engine/audio.js"></script>
+    <script src="src/js/components/parts.js"></script>
+    <script src="src/js/components/spacecraft.js"></script>
+    <script src="src/js/missions/missionData.js"></script>
+    <script src="src/js/missions/missionManager.js"></script>
+    <script src="src/js/engine/introAudio.js"></script>
+    <script src="src/js/ui/intro.js"></script>
+    <script src="src/js/ui/menu.js"></script>
+    <script src="src/js/ui/missionSelect.js"></script>
+    <script src="src/js/ui/builder.js"></script>
+    <script src="src/js/ui/simulation.js"></script>
+    <script src="src/js/ui/hud.js"></script>
+    <script src="src/js/ui/missionReport.js"></script>
+    <script src="src/js/ui/tutorials.js"></script>
+    <script src="src/js/ui/leaderboard.js"></script>
+    <script src="src/js/ui/nasaData.js"></script>
+    <script src="src/js/ui/settings.js"></script>
+    <script src="src/js/ui/teamMode.js"></script>
+    <script src="src/js/ui/toast.js"></script>
+    <script src="src/js/ui/modal.js"></script>
+    <script src="src/js/engine/visuals.js"></script>
+    <script src="src/js/ui/guide.js"></script>
+    <script src="src/js/game.js"></script>
+</body>
+</html>
+

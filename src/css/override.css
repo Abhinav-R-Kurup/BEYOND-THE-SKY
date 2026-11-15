@@ -1,0 +1,23 @@
+:root{--panel:rgba(22,28,37,.9);--line:#34404e;--text:#e9eef3;--accent:#e8832a}
+*{text-shadow:none!important;box-shadow:none!important;font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif!important;letter-spacing:normal!important}
+h1,h2,h3,h4,.menu-title,#game-title,.title-glow{text-transform:none!important;font-weight:600!important;color:var(--text)!important;background:none!important;-webkit-text-fill-color:currentColor!important;filter:none!important}
+.menu-title{font-size:2rem!important;line-height:1.15}.menu-tagline{display:none}
+.btn-icon,.logo-icon,.part-icon{display:none!important}
+button{cursor:pointer}
+.menu-btn,.hud-btn,.btn-back,.btn-sm,.tool-btn,.cat-btn,.diff-btn,.time-btn,.stage-btn,.btn-close,.btn-skip,#map-tools button,.guide-ok{background:#2a333f!important;background-image:none!important;border:1px solid #3d4957!important;color:var(--text)!important;border-radius:4px!important;text-transform:none!important;filter:none!important;padding:6px 12px}
+.menu-btn:hover,.hud-btn:hover,.btn-back:hover,.tool-btn:hover,.cat-btn:hover,.stage-btn:hover,#map-tools button:hover{background:#3a4658!important}
+.cat-btn.active,.diff-btn.active,.time-btn.active{background:var(--accent)!important;border-color:var(--accent)!important;color:#1b1209!important}
+.menu-btn.primary,.btn-launch,.guide-ok{background:var(--accent)!important;border:1px solid var(--accent)!important;color:#1b1209!important;font-weight:600;text-transform:none!important;background-image:none!important}
+.hud-panel,.builder-panel,.modal-box,.report-container,.guide-box{background:var(--panel)!important;background-image:none!important;border:1px solid var(--line)!important;border-radius:6px!important;backdrop-filter:none!important}
+.objective-item.complete{color:#8fd49b}.alert-item{color:#f2c46d}
+#sim-hud{z-index:30}.hud-panel{pointer-events:auto}
+#map-overlay{position:fixed;inset:0;z-index:20;background:#04070d}#map-overlay.hidden{display:none}
+#map-canvas{position:absolute;inset:0;width:100%;height:100%;cursor:grab}
+#map-overlay .overlay-header{position:fixed;top:70px;left:16px;z-index:25;display:flex;align-items:center;gap:10px;background:none!important;border:none!important}
+#map-tools{position:fixed;top:70px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:25}
+#map-info{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:25;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 14px;min-width:260px;color:var(--text);font-size:13px}
+#map-info div{display:flex;justify-content:space-between;gap:24px;padding:2px 0}
+#coach{position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:25;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 16px;color:var(--text);font-size:14px;max-width:70vw;text-align:center;pointer-events:none}
+#guide-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.guide-box{max-width:480px;padding:22px 26px;color:var(--text)}
+.guide-box h2{margin:0 0 12px;font-size:1.3rem}.guide-box ol{margin:0 0 18px;padding-left:20px;line-height:1.55;font-size:15px}.guide-box li{margin-bottom:6px}

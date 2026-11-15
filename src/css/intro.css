@@ -1,0 +1,231 @@
+/* ==========================================================
+   Cinematic Intro - An INCREDIBLES Production
+   NOTE: override.css flattens fonts/glows game-wide with
+   !important. Everything here is scoped to #intro-screen with
+   ID specificity so the intro keeps its cinematic look while
+   the rest of the game stays untouched.
+   Load order: this file must come AFTER override.css.
+   ========================================================== */
+
+#intro-screen {
+    background: #000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    --wm-top: 70%;
+    --wm-size: 20px;
+}
+
+#intro-screen.leaving { opacity: 0; transition: opacity 0.7s ease; }
+
+#intro-screen #intro-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+#intro-screen #intro-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#intro-screen .hidden { display: none !important; }
+
+/* ---- "AN INCREDIBLES PRODUCTION" card ---- */
+#intro-screen #intro-caption {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 21%;
+    text-align: center;
+    font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif !important;
+    font-weight: 500;
+    font-size: clamp(0.7rem, 1.35vw, 1.05rem);
+    letter-spacing: 0.9em !important;
+    text-indent: 0.9em;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 22px rgba(120, 180, 255, 0.55) !important;
+    opacity: 0;
+    transition: opacity 1.6s ease, letter-spacing 6s cubic-bezier(0.2, 0.6, 0.2, 1), text-indent 6s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+#intro-screen #intro-caption.show {
+    opacity: 1;
+    letter-spacing: 0.55em !important;
+    text-indent: 0.55em;
+}
+
+/* ---- logo wordmark (sits under the canvas-drawn logo) ---- */
+#intro-screen #intro-wordmark {
+    position: absolute;
+    left: 0; right: 0;
+    top: var(--wm-top);
+    text-align: center;
+    font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif !important;
+    font-weight: 600;
+    font-size: var(--wm-size);
+    letter-spacing: 0.7em !important;
+    text-indent: 0.7em;
+    color: #fff;
+    text-shadow: 0 0 26px rgba(120, 190, 255, 0.65) !important;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 1.1s ease, letter-spacing 2.6s cubic-bezier(0.16, 0.7, 0.2, 1), text-indent 2.6s cubic-bezier(0.16, 0.7, 0.2, 1), transform 1.6s ease;
+}
+#intro-screen #intro-wordmark.show {
+    opacity: 1;
+    letter-spacing: 0.24em !important;
+    text-indent: 0.24em;
+    transform: none;
+}
+
+/* ---- game title ---- */
+#intro-screen #game-title-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+    padding: 0 4vw;
+    text-align: center;
+    opacity: 0;
+    transform: none;
+    transition: opacity 1.2s ease;
+}
+#intro-screen #game-title-container.visible { opacity: 1; }
+#intro-screen.ending #game-title-container { opacity: 0; transition: opacity 1.2s ease; }
+
+#intro-screen #game-title {
+    font-family: 'Orbitron', 'Montserrat', 'Segoe UI', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: clamp(1.25rem, 4.4vw, 3.8rem);
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: #fff !important;
+    background: none !important;
+    -webkit-text-fill-color: #fff !important;
+    text-shadow: 0 0 32px rgba(110, 190, 255, 0.55), 0 0 90px rgba(60, 120, 255, 0.35) !important;
+    line-height: 1.25;
+    margin: 0;
+    max-width: 94vw;
+}
+#intro-screen #game-title .word { display: inline-block; white-space: nowrap; }
+#intro-screen #game-title .ch {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(16px) scale(1.18);
+    transition: opacity 0.9s ease, filter 0.9s ease, transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--i) * 55ms);
+}
+#intro-screen #game-title-container.visible #game-title .ch {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+}
+
+#intro-screen #title-rule {
+    height: 1px;
+    width: 0;
+    background: linear-gradient(90deg, transparent, #8fd8ff, transparent);
+    box-shadow: 0 0 14px rgba(110, 200, 255, 0.9) !important;
+    transition: width 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) 1.2s;
+}
+#intro-screen #game-title-container.visible #title-rule { width: min(52vw, 560px); }
+
+#intro-screen #game-subtitle {
+    font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif !important;
+    font-weight: 500;
+    font-size: clamp(0.65rem, 1.25vw, 0.95rem);
+    letter-spacing: 0.7em !important;
+    text-indent: 0.7em;
+    text-transform: uppercase !important;
+    color: #f6a85b !important;
+    text-shadow: 0 0 18px rgba(249, 115, 22, 0.5) !important;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.4s ease, transform 1.4s ease, letter-spacing 3s ease, text-indent 3s ease;
+}
+#intro-screen #game-title-container.sub #game-subtitle {
+    opacity: 1;
+    transform: none;
+    letter-spacing: 0.45em !important;
+    text-indent: 0.45em;
+}
+
+/* ---- click-to-begin gate (needed so the browser allows audio) ---- */
+#intro-screen #intro-gate {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    background: #000;
+    cursor: pointer;
+}
+#intro-screen #intro-gate.show { display: flex; }
+#intro-screen #intro-gate svg {
+    width: 34px;
+    height: auto;
+    fill: #fff;
+    filter: drop-shadow(0 0 10px rgba(120, 190, 255, 0.8));
+    opacity: 0.9;
+}
+#intro-screen #intro-gate .gate-text,
+#intro-screen #intro-gate .gate-sub {
+    font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif !important;
+    text-transform: uppercase;
+}
+#intro-screen #intro-gate .gate-text {
+    font-size: 0.8rem;
+    letter-spacing: 0.55em !important;
+    text-indent: 0.55em;
+    color: rgba(255, 255, 255, 0.8);
+    animation: introGatePulse 2.6s ease-in-out infinite;
+}
+#intro-screen #intro-gate .gate-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em !important;
+    text-indent: 0.35em;
+    color: rgba(255, 255, 255, 0.35);
+}
+@keyframes introGatePulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+/* ---- skip ---- */
+#intro-screen #skip-intro {
+    position: absolute;
+    bottom: 2.6%;
+    right: 2.5%;
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 999px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 7px 18px !important;
+    font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif !important;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em !important;
+    cursor: pointer;
+    transition: opacity 0.8s ease, background 0.3s ease, color 0.3s ease;
+}
+#intro-screen #skip-intro.show { opacity: 0.8; pointer-events: auto; }
+#intro-screen #skip-intro:hover { background: rgba(255, 255, 255, 0.12) !important; color: #fff !important; }
+
+@media (max-width: 700px) {
+    #intro-screen #game-title { letter-spacing: 0.12em !important; }
+    #intro-screen #intro-caption { letter-spacing: 0.5em !important; }
+    #intro-screen #intro-caption.show { letter-spacing: 0.3em !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #intro-screen #game-title .ch { transition-duration: 0.01s; transition-delay: 0s; filter: none; }
+}
